@@ -5,6 +5,11 @@ platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'SoundPlayer' do
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
+  pod 'rn-fetch-blob',:path => '../node_modules/rn-fetch-blob'
+
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -15,7 +20,7 @@ target 'SoundPlayer' do
     # Hermes is now enabled by default. Disable by setting this flag to false.
     # Upcoming versions of React Native may rely on get_default_flags(), but
     # we make it explicit here to aid in the React Native upgrade process.
-    :hermes_enabled => true,
+    :hermes_enabled => false,
     :fabric_enabled => flags[:fabric_enabled],
     # Enables Flipper.
     #
